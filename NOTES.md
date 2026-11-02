@@ -103,3 +103,4 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 - Round 4: she wants **both** real-estate versions ("גם וגם"): `nadlan` = "משרטוט אחד · החיים בבית" (with people, her logo) and `nadlan-house` = "משרטוט אחד · הבית" (the clean house tour, `נדלן.mp4`, no logo). This overrides the logo-version rule for this film only.
 - Round 5: the blinking red dot + "מקבלת עכשיו פרויקטים חדשים" line removed from the hero at her request. Red now appears only on the WhatsApp buttons.
 - Round 6: removed the About sentence "אני בונה את מה שקשה או יקר לצלם..." (she did not like it). Nothing added in its place.
+- Round 6: "אשמח לשמוע מכם." made much smaller (was up to 200px, now 44–84px) at her request.
