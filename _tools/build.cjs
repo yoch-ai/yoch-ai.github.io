@@ -37,7 +37,8 @@ function encode(w) {
   if (!fs.existsSync(src)) { console.warn(`! ${w.id}: source not found → ${src}`); return null; }
   const dir = path.join(MEDIA, w.id);
   fs.mkdirSync(dir, { recursive: true });
-  const metaFile = path.join(dir, 'meta.json');
+  // "_" prefix: GitHub Pages (Jekyll) never publishes it. It holds sizes, duration and the tiny placeholder.
+  const metaFile = path.join(dir, '_meta.json');
   const force = forceIds.includes(w.id);
   const info = probe(src);
   const vertical = info.h >= info.w;
@@ -72,11 +73,11 @@ function encode(w) {
     ff(['-ss', String(posterT), '-i', src, '-frames:v', '1', '-vf', scale(vertical, vertical ? 1080 : 1280), '-c:v', 'libwebp', '-quality', '70', '-compression_level', '6', out('poster-lg.webp')]);
   }
   let meta = fs.existsSync(metaFile) && !force ? JSON.parse(fs.readFileSync(metaFile, 'utf8')) : null;
-  if (!meta || meta.source !== w.source || meta.previewStart !== start) {
+  if (!meta || meta.previewStart !== start || meta.posterTime !== posterT) {
     const lqip = run('ffmpeg', ['-nostdin', '-v', 'error', '-ss', String(posterT), '-i', src, '-frames:v', '1', '-vf', 'scale=16:-2', '-q:v', '10', '-f', 'image2', '-c:v', 'mjpeg', 'pipe:1']);
     const pw = vertical ? Math.round(720 * info.w / info.h / 2) * 2 : 720;
     const ph = vertical ? 720 : Math.round(720 * info.h / info.w / 2) * 2;
-    meta = { source: w.source, previewStart: start, w: info.w, h: info.h, duration: info.duration, vertical,
+    meta = { previewStart: start, posterTime: posterT, w: info.w, h: info.h, duration: info.duration, vertical,
       poster: { w: pw, h: ph }, lqip: 'data:image/jpeg;base64,' + lqip.toString('base64') };
     fs.writeFileSync(metaFile, JSON.stringify(meta, null, 2));
   }
@@ -105,7 +106,7 @@ const playAttrs = (w, meta) => `href="${m(w)}/full.mp4" data-play data-full="${m
 function render() {
   const metas = {};
   for (const w of works) {
-    const f = path.join(MEDIA, w.id, 'meta.json');
+    const f = path.join(MEDIA, w.id, '_meta.json');
     if (fs.existsSync(f)) metas[w.id] = JSON.parse(fs.readFileSync(f, 'utf8'));
   }
   const ready = works.filter((w) => metas[w.id] && !w.hidden);

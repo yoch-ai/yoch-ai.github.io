@@ -1,6 +1,9 @@
-# GitHub Pages: publish the site files only. Folders starting with "_" are already left out.
+# GitHub Pages: publish the site files only.
+# Folders and files starting with "_" (_tools, _planning, assets/media/*/_meta.json) are already left out.
+# assets/data holds the source list (works.json with original file names): the page is pre-rendered, so it is not needed online.
 exclude:
   - NOTES.md
   - README.md
   - .claude
   - .gitignore
+  - assets/data
