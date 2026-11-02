@@ -133,19 +133,7 @@ a.frame:focus-visible .play-chip { opacity: 1; transform: none; }
 .rec-dot { inline-size: 9px; block-size: 9px; border-radius: 50%; background: var(--pencil); flex: none; }
 .headline { font: 700 clamp(60px, 15.5vw, 176px)/0.86 var(--display); letter-spacing: 0.005em; }
 .headline .w { display: inline-block; }
-/* Second line ("בעין של צלמת."): about half the size of the first (her request, 2.11.2026). */
-.headline-sub { display: block; font-size: 0.5em; line-height: 1; margin-block-start: 0.16em; }
-.mark { position: relative; display: inline-block; }
-.mark svg {
-  position: absolute; inset-block-start: -16%; inset-inline-start: -18%;
-  inline-size: 136%; block-size: 128%; max-inline-size: none; overflow: visible; pointer-events: none;
-}
-.mark path {
-  fill: none; stroke: var(--pencil); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-block-start: 28px; }
-.promise { font-size: 16px; color: var(--paper); opacity: 0.82; }
 
 @media (min-width: 900px) {
   .hero { min-block-size: clamp(620px, calc(100svh - var(--nav-h)), 980px); align-items: end; }
@@ -160,7 +148,7 @@ a.frame:focus-visible .play-chip { opacity: 1; transform: none; }
   .headline { font-size: clamp(88px, 10.5vw, 176px); }
 }
 
-/* The one orchestrated moment: frames develop like a print in the tray, words rise, the pencil circles one word. */
+/* The one orchestrated moment: frames develop like a print in the tray, then the words rise. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-tile { animation: develop 1.7s var(--ease) both; }
   .hero-tile:nth-child(2) { animation-delay: 0.12s; }
@@ -170,15 +158,12 @@ a.frame:focus-visible .play-chip { opacity: 1; transform: none; }
   .headline .w:nth-of-type(1) { animation-delay: 0.45s; }
   .headline .w:nth-of-type(2) { animation-delay: 0.53s; }
   .headline .w:nth-of-type(3) { animation-delay: 0.61s; }
-  .headline-sub .w:nth-of-type(1) { animation-delay: 0.75s; }
-  .headline-sub .w:nth-of-type(2) { animation-delay: 0.83s; }
-  .headline-sub .w:nth-of-type(3) { animation-delay: 0.91s; }
-  .mark path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 0.95s 1.4s var(--ease-draw) forwards; }
+  .headline .w:nth-of-type(4) { animation-delay: 0.69s; }
+  .headline .w:nth-of-type(5) { animation-delay: 0.77s; }
   .rec-dot { animation: rec 1.8s steps(1) infinite; }
 }
 @keyframes develop { from { filter: brightness(2.4) contrast(0.35) saturate(0); } to { filter: none; } }
 @keyframes rise { from { opacity: 0; transform: translateY(0.32em); } to { opacity: 1; transform: none; } }
-@keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes rec { 50% { opacity: 0.25; } }
 
 /* ---------- sections ---------- */
