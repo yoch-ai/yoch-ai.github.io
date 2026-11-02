@@ -104,3 +104,4 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 - Round 5: the blinking red dot + "מקבלת עכשיו פרויקטים חדשים" line removed from the hero at her request. Red now appears only on the WhatsApp buttons.
 - Round 6: removed the About sentence "אני בונה את מה שקשה או יקר לצלם..." (she did not like it). Nothing added in its place.
 - Round 6: "אשמח לשמוע מכם." made much smaller (was up to 200px, now 34–56px, after "גם לא כזה גדול") at her request. Text change pending her choice.
+- Contact heading text is now her pick: "בואו נדבר על הסרטון שלכם." (replaces "אשמח לשמוע מכם.").
