@@ -180,16 +180,6 @@ a.frame:focus-visible .play-chip { opacity: 1; transform: none; }
 .featured { display: grid; gap: 48px; align-items: center; }
 .feat-media { position: relative; inline-size: min(82%, 420px); margin-inline: auto; }
 .feat-media .frame { aspect-ratio: 9 / 16; }
-.pencil-box {
-  position: absolute; inset-block-start: -30px; inset-inline-start: -30px;
-  inline-size: calc(100% + 60px); block-size: calc(100% + 60px); max-inline-size: none;
-  overflow: visible; pointer-events: none;
-}
-.pencil-box path { fill: none; stroke: var(--pencil); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-.pencil-note {
-  position: absolute; inset-block-start: -66px; inset-inline-end: -16px; transform: rotate(-5deg);
-  font: 700 34px/1 var(--display); color: var(--pencil);
-}
 .feat-kind { color: var(--graphite); font-size: 15px; margin-block-end: 12px; }
 .feat-title { font: 700 clamp(60px, 10vw, 136px)/0.86 var(--display); margin-block-end: 22px; }
 .feat-copy p:not(.feat-kind) { max-inline-size: 52ch; font-size: 17px; margin-block-end: 12px; }
