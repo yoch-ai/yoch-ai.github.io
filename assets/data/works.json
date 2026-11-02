@@ -86,7 +86,8 @@
     "alt": "אישה בשמלה לבנה מוזגת מים במטבח של צימר מול הרים ירוקים",
     "previewStart": 3.5,
     "link": "",
-    "featured": false
+    "featured": false,
+    "hero": true
   },
   {
     "id": "shoes",
@@ -97,7 +98,6 @@
     "source": "../סירטונים סופים/פירסומת נעלים סופי .mp4",
     "alt": "אישה קוראת מגזין והולכת על ראשי עמודי אבן ברחוב",
     "previewStart": 22.6,
-    "hero": true,
     "link": "",
     "featured": true,
     "featuredText": [

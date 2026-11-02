@@ -66,7 +66,7 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 
 - Works render into `index.html` by `node _tools/build.cjs` (static HTML: crawlable, works from file://, no JS needed to see cards). `works.json` stays the one file she edits.
 - Media per work in `assets/media/<id>/`: `preview.mp4` (8 s, 720 long side, no audio, CRF 27 ≤1.2 Mb/s), `hero.mp4` (hero tiles only, 1080), `full.mp4` (with audio, 1080 vertical / 720p wide), `poster.webp` + `poster-lg.webp`, LQIP inlined from `meta.json`.
-- Hero tiles: bridal, chess, NUVELIE, shoes. Real estate kept out of the hero on purpose: every real-estate film has burnt-in text that fights the headline.
+- Hero tiles: bridal, chess, NUVELIE, zimmer. Her call (round 3): the shoes ad is already the featured film ("הבחירה שלי") and the top had three fashion tiles, so real estate (zimmer, small subtitles only) took its place.
 - Fonts self-hosted (Hebrew + Latin subsets, OFL in `assets/fonts/OFL.txt`): moving off Google's CDN took Lighthouse performance from 90 to 96.
 - Bar mitzvah `full.mp4` is 76 MB: under GitHub's 100 MB hard limit, over its 50 MB warning. Total media ≈167 MB.
 - `_config.yml` keeps NOTES/README/.claude off the published site; `_tools/`, `_planning/` are skipped by Jekyll already.
