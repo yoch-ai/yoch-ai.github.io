@@ -129,8 +129,6 @@ a.frame:focus-visible .play-chip { opacity: 1; transform: none; }
   background: linear-gradient(to top, var(--ink), rgb(13 11 10 / 0));
 }
 .hero-copy { background: var(--ink); }
-.rec { display: inline-flex; align-items: center; gap: 10px; font: 500 15px/1.2 var(--text); margin-block-end: 14px; }
-.rec-dot { inline-size: 9px; block-size: 9px; border-radius: 50%; background: var(--pencil); flex: none; }
 .headline { font: 700 clamp(60px, 15.5vw, 176px)/0.86 var(--display); letter-spacing: 0.005em; }
 .headline .w { display: inline-block; }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-block-start: 28px; }
@@ -160,11 +158,9 @@ a.frame:focus-visible .play-chip { opacity: 1; transform: none; }
   .headline .w:nth-of-type(3) { animation-delay: 0.61s; }
   .headline .w:nth-of-type(4) { animation-delay: 0.69s; }
   .headline .w:nth-of-type(5) { animation-delay: 0.77s; }
-  .rec-dot { animation: rec 1.8s steps(1) infinite; }
 }
 @keyframes develop { from { filter: brightness(2.4) contrast(0.35) saturate(0); } to { filter: none; } }
 @keyframes rise { from { opacity: 0; transform: translateY(0.32em); } to { opacity: 1; transform: none; } }
-@keyframes rec { 50% { opacity: 0.25; } }
 
 /* ---------- sections ---------- */
 .sec-title { font: 700 clamp(56px, 9vw, 120px)/0.88 var(--display); }
