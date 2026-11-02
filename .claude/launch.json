@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "yoch-site",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["_tools/serve.cjs", "8765"],
+      "port": 8765
+    }
+  ]
+}

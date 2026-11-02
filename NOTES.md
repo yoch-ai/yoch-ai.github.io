@@ -48,7 +48,12 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 ## Status
 
 - [x] Phase 0 interview
-- [ ] Phase 1 design plan — `_planning/תוכנית עיצוב.html`, waiting for her approval
+- [ ] Phase 1 design plan — `_planning/תוכנית עיצוב.html` (darkroom palette, Karantina + IBM Plex Sans Hebrew, red grease-pencil circle as the one memorable element), waiting for her approval + the open questions listed at the bottom of the plan
 - [ ] Phase 2 build
 - [ ] Phase 3 verify
 - [ ] Phase 4 deploy
+
+## Local preview
+
+`node _tools/serve.cjs` (Range-capable static server). The Claude desktop preview config lives in
+`C:\Users\yoche\Desktop\.claude\launch.json` as `yoch-site`; the app may move it to port 8766, and the script honours `PORT`.
