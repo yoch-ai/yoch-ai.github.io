@@ -165,7 +165,7 @@
 
   /* ---------- 4a. floating WhatsApp: only between the hero and the contact section ---------- */
   const fab = document.querySelector('.wa-float');
-  const hero = document.querySelector('.hero');
+  const hero = document.querySelector('.hero, .page-head');
   const contact = document.querySelector('#contact');
   if (fab && hero && contact && 'IntersectionObserver' in window) {
     const inView = new Map([[hero, true], [contact, false]]);
