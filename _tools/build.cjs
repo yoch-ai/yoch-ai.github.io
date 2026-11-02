@@ -120,7 +120,7 @@ const playAttrs = (w, meta) => `href="${m(w)}/full.mp4" data-play data-full="${m
 function cardHtml(w, meta, i) {
   const link = w.link ? `<a class="card-link" href="${esc(w.link)}" target="_blank" rel="noopener">לסרט באינסטגרם</a>` : '';
   return `<li class="card" data-cat="${w.category}" data-ar="${meta.vertical ? 'v' : 'h'}" style="--ar:${meta.poster.w}/${meta.poster.h}">
-        <a class="frame" ${playAttrs(w, meta)} aria-label="צפייה עם סאונד: ${esc(w.title)}">
+        <a class="frame" ${playAttrs(w, meta)} aria-label="צפו עם סאונד: ${esc(w.title)}">
           ${posterImg(w, meta, { sizes: '(min-width: 1280px) 22vw, (min-width: 700px) 30vw, 46vw' })}
           ${videoTag(w)}
           <span class="fn" aria-hidden="true">${String(i + 1).padStart(2, '0')}A</span>
@@ -191,7 +191,7 @@ function render() {
     const text = (featured.featuredText || [featured.pitch]).map((p) => `<p>${esc(p)}</p>`).join('');
     featuredHtml = `<section class="featured" aria-labelledby="featured-title">
     <div class="feat-media">
-      <a class="frame" ${playAttrs(featured, meta)} aria-label="צפייה עם סאונד: ${esc(featured.title)}">
+      <a class="frame" ${playAttrs(featured, meta)} aria-label="צפו עם סאונד: ${esc(featured.title)}">
         ${posterImg(featured, meta, { sizes: '(min-width: 900px) 34vw, 80vw' })}
         ${videoTag(featured)}
         <span class="play-chip" aria-hidden="true">${playIcon}צפו עם סאונד</span>
@@ -232,7 +232,7 @@ function render() {
   if (about) {
     const meta = metas[about.id];
     aboutHtml += `<figure class="about-film">
-        <a class="frame" ${playAttrs(about, meta)} aria-label="צפייה עם סאונד: ${esc(about.title)}">
+        <a class="frame" ${playAttrs(about, meta)} aria-label="צפו עם סאונד: ${esc(about.title)}">
           ${posterImg(about, meta, { sizes: '(min-width: 900px) 26vw, 70vw' })}
           ${videoTag(about)}
           <span class="play-chip" aria-hidden="true">${playIcon}צפו עם סאונד</span>
