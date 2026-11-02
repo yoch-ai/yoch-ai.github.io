@@ -1,15 +1,27 @@
 {
-  "url": "",
+  "url": "https://yoch-ai.github.io/",
   "whatsapp": "972507800412",
   "whatsappText": "היי יוכבד, ראיתי את האתר ואשמח לשמוע על סרטון לעסק שלי.",
   "phone": "050-780-0412",
   "email": "yocheved1190@gmail.com",
   "instagram": "yocheved_polonsky",
   "categories": [
-    { "id": "realestate", "label": "נדל\"ן" },
-    { "id": "fashion", "label": "אופנה וכלות" },
-    { "id": "food", "label": "אוכל ומסעדות" },
-    { "id": "films", "label": "סרטים וקליפים" }
+    {
+      "id": "realestate",
+      "label": "נדל\"ן"
+    },
+    {
+      "id": "fashion",
+      "label": "אופנה וכלות"
+    },
+    {
+      "id": "food",
+      "label": "אוכל ומסעדות"
+    },
+    {
+      "id": "films",
+      "label": "סרטים וקליפים"
+    }
   ],
   "proof": [],
   "photo": ""
