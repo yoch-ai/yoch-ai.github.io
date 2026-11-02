@@ -9,7 +9,11 @@
     "alt": "ילדה אוכלת ארוחת בוקר בסלון של וילה מול הים",
     "previewStart": 13,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "From One Floor Plan · Life at Home",
+    "pitch_en": "A seafront villa that has not been built yet. From the plan on the table to a movie night in the living room.",
+    "stat_en": "Real estate ad",
+    "alt_en": "A girl eating breakfast in the living room of a villa facing the sea"
   },
   {
     "id": "nadlan-house",
@@ -22,7 +26,11 @@
     "previewStart": 26.5,
     "posterTime": 32,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "From One Floor Plan · The House",
+    "pitch_en": "A seafront villa that has not been built yet, room by room: from the plan on the table to the pool.",
+    "stat_en": "Real estate mood film",
+    "alt_en": "A white villa with a pool facing the sea"
   },
   {
     "id": "bridal",
@@ -35,7 +43,11 @@
     "previewStart": 11,
     "hero": true,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "The Train",
+    "pitch_en": "A lace gown with flowers, a long train on stone stairs and soft window light.",
+    "stat_en": "Bridal film",
+    "alt_en": "A bride in a lace gown with a long train climbing a stone staircase"
   },
   {
     "id": "chess",
@@ -49,7 +61,11 @@
     "link": "",
     "featured": false,
     "hero": true,
-    "posterTime": 12.7
+    "posterTime": 12.7,
+    "title_en": "The Next Move",
+    "pitch_en": "An old man and a flamingo play chess in the park, and the flamingo wins. Every move on the board is legal.",
+    "stat_en": "Chess table ad",
+    "alt_en": "An old man and a flamingo at a chess table in a park"
   },
   {
     "id": "nuvelie",
@@ -62,7 +78,11 @@
     "previewStart": 13,
     "hero": true,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "NUVELIE",
+    "pitch_en": "One coat, from the bright studio out to the street. No model, no studio, no shoot day.",
+    "stat_en": "Boutique fashion film",
+    "alt_en": "A model in a long burgundy coat walking through a bright studio"
   },
   {
     "id": "shibro",
@@ -74,7 +94,11 @@
     "alt": "מבט מהאוויר על שכונת מגדלים ירוקה ליד הים בחיפה",
     "previewStart": 8,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "Shibro, Haifa",
+    "pitch_en": "Built from the official renderings: cookies in the oven, the garden, and the parents on a balcony facing the sea.",
+    "stat_en": "Developer ad",
+    "alt_en": "Aerial view of a green neighbourhood of towers by the sea in Haifa"
   },
   {
     "id": "jewelry",
@@ -87,7 +111,11 @@
     "previewStart": 9,
     "posterTime": 11,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "Branches of Gold",
+    "pitch_en": "A green forest, a white dress, and light flowing through the tree trunk until it stops on the bracelet.",
+    "stat_en": "Jewellery ad",
+    "alt_en": "A woman in a white dress in a forest, gold light flowing through the tree beside her"
   },
   {
     "id": "zimmer",
@@ -100,7 +128,11 @@
     "previewStart": 3.5,
     "link": "",
     "featured": false,
-    "hero": true
+    "hero": true,
+    "title_en": "Morning in the Hills",
+    "pitch_en": "A wood-and-glass cabin facing a green ridge, and one morning in no hurry.",
+    "stat_en": "Cabin film",
+    "alt_en": "A woman in a white dress pouring water in a cabin kitchen facing green hills"
   },
   {
     "id": "shoes",
@@ -117,7 +149,15 @@
       "אישה שקועה בצילום של נעליים במגזין. היא הולכת בלי להרים את העיניים, ועוברת מעל ספסל, קורת שיווי משקל, עמודים, סקייטבורד ומכונית בלי לשים לב שהם שם.",
       "רק כשהיא מגיעה לחנות מתגלה מה משך אותה לאורך כל הדרך. המוצר נחשף רק בסוף, והמסר נשאר."
     ],
-    "posterTime": 23
+    "posterTime": 23,
+    "title_en": "They Have a Pull",
+    "pitch_en": "A woman lost in a magazine walks over posts, a bench and a car without noticing. Only at the store do we see what drew her.",
+    "stat_en": "Shoe ad",
+    "alt_en": "A woman reading a magazine walking along the tops of stone posts",
+    "featuredText_en": [
+      "A woman absorbed in a photo of shoes in a magazine. She walks without looking up, crossing a bench, a balance beam, posts, a skateboard and a car without noticing they are there.",
+      "Only when she reaches the store do we see what drew her all along. The product is revealed only at the end, and the message stays."
+    ]
   },
   {
     "id": "dancer",
@@ -129,7 +169,11 @@
     "alt": "צעירה רוקדת ברחבת ריקודים באור סגול",
     "previewStart": 52,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "She Dances",
+    "pitch_en": "One character leads the clip from the jungle and the waterfall to the dance floor, and stays the same in every light.",
+    "stat_en": "Animated music clip",
+    "alt_en": "A young woman dancing on a dance floor in purple light"
   },
   {
     "id": "tennis",
@@ -142,7 +186,11 @@
     "previewStart": 0,
     "posterTime": 0.4,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "One Shot",
+    "pitch_en": "The ball splits in the air into dozens of balls that fill the court. One shot opens a whole world.",
+    "stat_en": "Studio ad",
+    "alt_en": "A tennis player hitting the ball on a court at sunset"
   },
   {
     "id": "barmitzvah",
@@ -155,7 +203,11 @@
     "previewStart": 176,
     "posterTime": 180,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "Bar Mitzvah Film",
+    "pitch_en": "The bar mitzvah boy is the hero: a race track, a boxing ring and outer space, and his face stays the same in every world.",
+    "stat_en": "Personal event film",
+    "alt_en": "A boy in a boxing shirt standing in a lit arena facing a crowd"
   },
   {
     "id": "hadas",
@@ -168,7 +220,11 @@
     "previewStart": 13,
     "hidden": true,
     "link": "",
-    "featured": false
+    "featured": false,
+    "title_en": "Hadas",
+    "pitch_en": "A short fashion film for a boutique. A model in a trench coat, from the bright studio out to the street.",
+    "stat_en": "Boutique fashion film",
+    "alt_en": "A model in a trench coat walking out of a boutique onto the street"
   },
   {
     "id": "promo",
@@ -182,6 +238,10 @@
     "about": true,
     "link": "",
     "featured": false,
-    "posterTime": 27.6
+    "posterTime": 27.6,
+    "title_en": "The Yoch AI Ad",
+    "pitch_en": "The ad I made for Yoch AI.",
+    "stat_en": "Studio ad",
+    "alt_en": "The end card of the ad: the Yoch AI logo over a tennis court"
   }
 ]

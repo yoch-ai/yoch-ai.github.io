@@ -80,11 +80,23 @@ button { font: inherit; color: inherit; }
 .nav-links a { text-decoration: none; font-size: 16px; color: var(--paper); opacity: 0.8; transition: opacity 0.2s; }
 .nav-links a:hover { opacity: 1; }
 .nav-links a[aria-current="page"] { opacity: 1; text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px; }
-.nav .btn-sm { margin-inline-start: auto; }
+/* language switch: Hebrew pages link to the English twin and back */
+.lang {
+  margin-inline-start: auto; display: inline-flex; align-items: center; min-block-size: 40px; padding: 6px 12px;
+  color: var(--paper); text-decoration: none; font: 500 14px/1 var(--text);
+  box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow 0.2s;
+}
+.lang:hover { box-shadow: inset 0 0 0 1px rgb(234 231 225 / 0.5); }
+.nav .btn-sm { margin-inline-start: -12px; }
 @media (min-width: 1040px) {
   .nav-links { display: flex; }
-  .nav .btn-sm { margin-inline-start: 8px; }
+  .lang { margin-inline-start: 4px; }
+  .nav .btn-sm { margin-inline-start: -12px; }
 }
+@media (max-width: 420px) { .nav { gap: 18px; } .nav .btn-sm { margin-inline-start: -8px; } }
+/* arrows point the reading direction */
+[dir="ltr"] .cat-go svg, [dir="ltr"] .back svg { transform: scaleX(-1); }
+[dir="ltr"] .cat-frame:hover .cat-go svg, [dir="ltr"] .cat-frame:focus-visible .cat-go svg { transform: scaleX(-1) translateX(-4px); }
 
 /* ---------- frames (every piece of media) ---------- */
 .frame { position: relative; display: block; overflow: hidden; background: #000; margin: 0; }
@@ -158,6 +170,8 @@ a.frame:focus-visible .play-chip { opacity: 1; transform: none; }
   .headline .w:nth-of-type(3) { animation-delay: 0.61s; }
   .headline .w:nth-of-type(4) { animation-delay: 0.69s; }
   .headline .w:nth-of-type(5) { animation-delay: 0.77s; }
+  .headline .w:nth-of-type(6) { animation-delay: 0.85s; }
+  .headline .w:nth-of-type(7) { animation-delay: 0.93s; }
 }
 @keyframes develop { from { filter: brightness(2.4) contrast(0.35) saturate(0); } to { filter: none; } }
 @keyframes rise { from { opacity: 0; transform: translateY(0.32em); } to { opacity: 1; transform: none; } }

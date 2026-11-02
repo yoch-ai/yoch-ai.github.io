@@ -97,39 +97,54 @@ function encode(w) {
 }
 
 // ---------- html helpers ----------
-let PREFIX = ''; // '' on the home page, '../' on a category page
+// Two languages. Paths: PREFIX = way back to the site root (assets), LB = way back to this language's home.
+//   he home: ''      / ''      he category: '../'    / '../'
+//   en home: '../'   / ''      en category: '../../' / '../'
+let PREFIX = '';
+let LB = '';
+let LANG = 'he';
+const T = {
+  he: { watch: 'צפו עם סאונד', watchFilm: 'צפו בסרט עם סאונד', toAll: 'לכל הסרטים', ig: 'לסרט באינסטגרם', process: 'תהליך', about: 'עליי',
+    proof: 'במספרים', photoAlt: 'יוכבד פולונסקי', count: (n) => (n === 1 ? 'סרט אחד' : `${n} סרטים`) },
+  en: { watch: 'Watch with sound', watchFilm: 'Watch the film with sound', toAll: 'All the films', ig: 'Watch on Instagram', process: 'Process', about: 'About',
+    proof: 'In numbers', photoAlt: 'Yocheved Polonsky', count: (n) => (n === 1 ? '1 film' : `${n} films`) },
+};
+const t = (k) => T[LANG][k];
+// a text field in the current language: "title" in Hebrew, "title_en" in English (falls back to Hebrew)
+const tx = (obj, key) => (LANG === 'en' && obj[`${key}_en`] != null ? obj[`${key}_en`] : obj[key]);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const mmss = (sec) => { const s = Math.round(sec); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
-const ltr = (s) => `<span dir="ltr">${esc(s)}</span>`;
+const ltr = (s) => (LANG === 'he' ? `<span dir="ltr">${esc(s)}</span>` : esc(s));
 const hasLatin = (s) => /^[\x00-\x7F]+$/.test(s);
-const titleHtml = (t) => (hasLatin(t) ? `<span dir="ltr">${esc(t)}</span>` : esc(t));
+const titleHtml = (s) => (LANG === 'he' && hasLatin(s) ? `<span dir="ltr">${esc(s)}</span>` : esc(s));
 const m = (w) => `${PREFIX}assets/media/${w.id}`;
 const playIcon = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-const count = (n) => (n === 1 ? 'סרט אחד' : `${n} סרטים`);
+const catTitle = (c) => tx(c, 'title') || tx(c, 'label');
 
 function posterImg(w, meta, { eager = false, sizes, decorative = false } = {}) {
   const lgW = meta.vertical ? Math.round(1080 * meta.w / meta.h / 2) * 2 : 1280;
   return `<img class="poster" src="${m(w)}/poster.webp" srcset="${m(w)}/poster.webp ${meta.poster.w}w, ${m(w)}/poster-lg.webp ${lgW}w" sizes="${sizes}"`
-    + ` width="${meta.poster.w}" height="${meta.poster.h}" alt="${decorative ? '' : esc(w.alt || w.title)}"`
+    + ` width="${meta.poster.w}" height="${meta.poster.h}" alt="${decorative ? '' : esc(tx(w, 'alt') || tx(w, 'title'))}"`
     + (eager ? ' fetchpriority="high"' : ' loading="lazy"') + ` decoding="async" style="background-image:url(${meta.lqip})">`;
 }
 const videoTag = (w, extra = '') => `<video muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1" data-src="${m(w)}/preview.mp4"${extra}></video>`;
 const playAttrs = (w, meta) => `href="${m(w)}/full.mp4" data-play data-full="${m(w)}/full.mp4" data-poster="${m(w)}/poster-lg.webp"`
-  + ` data-title="${esc(w.title)}" data-kind="${esc(w.stat)} · ${mmss(meta.duration)}" data-ar="${meta.vertical ? 'v' : 'h'}"`;
+  + ` data-title="${esc(tx(w, 'title'))}" data-kind="${esc(tx(w, 'stat'))} · ${mmss(meta.duration)}" data-ar="${meta.vertical ? 'v' : 'h'}"`;
+const watchLabel = (w) => `aria-label="${t('watch')}: ${esc(tx(w, 'title'))}"`;
 
 function cardHtml(w, meta, i) {
-  const link = w.link ? `<a class="card-link" href="${esc(w.link)}" target="_blank" rel="noopener">לסרט באינסטגרם</a>` : '';
+  const link = w.link ? `<a class="card-link" href="${esc(w.link)}" target="_blank" rel="noopener">${t('ig')}</a>` : '';
   return `<li class="card" data-cat="${w.category}" data-ar="${meta.vertical ? 'v' : 'h'}" style="--ar:${meta.poster.w}/${meta.poster.h}">
-        <a class="frame" ${playAttrs(w, meta)} aria-label="צפו עם סאונד: ${esc(w.title)}">
+        <a class="frame" ${playAttrs(w, meta)} ${watchLabel(w)}>
           ${posterImg(w, meta, { sizes: '(min-width: 1280px) 22vw, (min-width: 700px) 30vw, 46vw' })}
           ${videoTag(w)}
           <span class="fn" aria-hidden="true">${String(i + 1).padStart(2, '0')}A</span>
-          <span class="play-chip" aria-hidden="true">${playIcon}צפו עם סאונד</span>
+          <span class="play-chip" aria-hidden="true">${playIcon}${t('watch')}</span>
         </a>
         <div class="cap">
-          <h3 class="card-title">${titleHtml(w.title)}</h3>
-          <p class="card-pitch">${esc(w.pitch)}</p>
-          <p class="card-stat">${esc(w.stat)} · ${ltr(mmss(meta.duration))}</p>${link}
+          <h3 class="card-title">${titleHtml(tx(w, 'title'))}</h3>
+          <p class="card-pitch">${esc(tx(w, 'pitch'))}</p>
+          <p class="card-stat">${esc(tx(w, 'stat'))} · ${ltr(mmss(meta.duration))}</p>${link}
         </div>
       </li>`;
 }
@@ -141,19 +156,31 @@ function put(html, name, content) {
 }
 
 const baseUrl = site.url ? site.url.replace(/\/?$/, '/') : '';
-// Contact links, canonical and share image: same rules on every page.
+// Contact links, canonical, language alternates and share image: same rules on every page.
+// pagePath is the page inside its language ('' for the home page, 'fashion/' for a category).
 function finish(html, pagePath) {
-  const wa = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(site.whatsappText)}`;
+  const text = LANG === 'en' && site.whatsappText_en ? site.whatsappText_en : site.whatsappText;
+  const wa = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
   html = html.replace(/href="[^"]*"(\s+data-wa)/g, `href="${esc(wa)}"$1`)
     .replace(/href="[^"]*"(\s+data-mail)/g, `href="mailto:${esc(site.email)}"$1`)
     .replace(/href="[^"]*"(\s+data-tel)/g, `href="tel:+${site.whatsapp}"$1`)
     .replace(/href="[^"]*"(\s+data-ig)/g, `href="https://www.instagram.com/${esc(site.instagram)}/"$1`);
-  const u = baseUrl ? baseUrl + pagePath : '';
-  html = put(html, 'url', u ? `<link rel="canonical" href="${esc(u)}">\n  <meta property="og:url" content="${esc(u)}">` : '');
-  return html.replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")/g, `$1${baseUrl ? esc(baseUrl) : PREFIX}assets/og.jpg$2`);
+  let head = '';
+  if (baseUrl) {
+    const he = baseUrl + pagePath;
+    const en = baseUrl + 'en/' + pagePath;
+    head = `<link rel="canonical" href="${esc(LANG === 'en' ? en : he)}">\n  <meta property="og:url" content="${esc(LANG === 'en' ? en : he)}">`
+      + `\n  <link rel="alternate" hreflang="he" href="${esc(he)}">\n  <link rel="alternate" hreflang="en" href="${esc(en)}">\n  <link rel="alternate" hreflang="x-default" href="${esc(he)}">`;
+  }
+  html = put(html, 'url', head);
+  const og = LANG === 'en' ? 'assets/og-en.jpg' : 'assets/og.jpg';
+  return html.replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")/g, `$1${baseUrl ? esc(baseUrl) : PREFIX}${og}$2`);
 }
 
 // ---------- pages ----------
+const HOME = { he: INDEX, en: path.join(ROOT, 'en', 'index.html') };
+const CAT_TPL = { he: CAT_TEMPLATE, en: path.join(__dirname, 'category-template.en.html') };
+
 function render() {
   const metas = {};
   for (const w of works) {
@@ -167,124 +194,133 @@ function render() {
   const about = ready.find((w) => w.about);
   const cats = site.categories.filter((c) => grid.some((w) => w.category === c.id));
   const inCat = (c) => grid.filter((w) => w.category === c.id);
+  const pages = [];
 
-  // shared bits: header links + footer links to every category page
-  const navHtml = (current) => cats.map((c) => `<a href="${PREFIX}${c.id}/"${c.id === current ? ' aria-current="page"' : ''}>${esc(c.title || c.label)}</a>`).join('\n      ')
-    + `\n      <a href="${PREFIX}#process">תהליך</a>\n      <a href="${PREFIX}#about">עליי</a>`;
-  const footNavHtml = (current) => cats.map((c) => `<a href="${PREFIX}${c.id}/"${c.id === current ? ' aria-current="page"' : ''}>${esc(c.title || c.label)}</a>`).join('\n    ');
+  for (const lang of ['he', 'en']) {
+    LANG = lang;
+    if (!fs.existsSync(HOME[lang])) { console.warn(`! no ${lang} home page at ${HOME[lang]}`); continue; }
+    const navHtml = (current) => cats.map((c) => `<a href="${LB}${c.id}/"${c.id === current ? ' aria-current="page"' : ''}>${esc(catTitle(c))}</a>`).join('\n      ')
+      + `\n      <a href="${LB}#process">${t('process')}</a>\n      <a href="${LB}#about">${t('about')}</a>`;
+    const footNavHtml = (current) => cats.map((c) => `<a href="${LB}${c.id}/"${c.id === current ? ' aria-current="page"' : ''}>${esc(catTitle(c))}</a>`).join('\n    ');
 
-  // ===== home =====
-  PREFIX = '';
-  const heroHtml = hero.map((w, i) => {
-    const meta = metas[w.id];
-    return `<figure class="frame hero-tile"${i > 1 ? ' data-wide-only' : ''}>${posterImg(w, meta, { eager: i < 2, decorative: true, sizes: '(min-width: 900px) 25vw, 50vw' })}`
-      + `${videoTag(w, ` data-src-lg="${m(w)}/hero.mp4" data-hero`)}<figcaption class="fn" aria-hidden="true">${String(i + 1).padStart(2, '0')}A</figcaption></figure>`;
-  }).join('\n      ');
+    // ===== home =====
+    PREFIX = lang === 'en' ? '../' : '';
+    LB = '';
+    const heroHtml = hero.map((w, i) => {
+      const meta = metas[w.id];
+      return `<figure class="frame hero-tile"${i > 1 ? ' data-wide-only' : ''}>${posterImg(w, meta, { eager: i < 2, decorative: true, sizes: '(min-width: 900px) 25vw, 50vw' })}`
+        + `${videoTag(w, ` data-src-lg="${m(w)}/hero.mp4" data-hero`)}<figcaption class="fn" aria-hidden="true">${String(i + 1).padStart(2, '0')}A</figcaption></figure>`;
+    }).join('\n      ');
 
-  const proofHtml = site.proof && site.proof.length
-    ? `<section class="proof" aria-label="במספרים"><ul class="proof-list">${site.proof.map((p) => `<li><span class="proof-num" data-count="${esc(p.value)}" dir="ltr">${esc(p.display || p.value)}</span><span class="proof-label">${esc(p.label)}</span></li>`).join('')}</ul></section>`
-    : '';
+    const proofHtml = site.proof && site.proof.length
+      ? `<section class="proof" aria-label="${t('proof')}"><ul class="proof-list">${site.proof.map((p) => `<li><span class="proof-num" data-count="${esc(p.value)}" dir="ltr">${esc(p.display || p.value)}</span><span class="proof-label">${esc(tx(p, 'label'))}</span></li>`).join('')}</ul></section>`
+      : '';
 
-  let featuredHtml = '';
-  if (featured) {
-    const meta = metas[featured.id];
-    const text = (featured.featuredText || [featured.pitch]).map((p) => `<p>${esc(p)}</p>`).join('');
-    featuredHtml = `<section class="featured" aria-labelledby="featured-title">
+    let featuredHtml = '';
+    if (featured) {
+      const meta = metas[featured.id];
+      const text = (tx(featured, 'featuredText') || [tx(featured, 'pitch')]).map((p) => `<p>${esc(p)}</p>`).join('');
+      featuredHtml = `<section class="featured" aria-labelledby="featured-title">
     <div class="feat-media">
-      <a class="frame" ${playAttrs(featured, meta)} aria-label="צפו עם סאונד: ${esc(featured.title)}">
+      <a class="frame" ${playAttrs(featured, meta)} ${watchLabel(featured)}>
         ${posterImg(featured, meta, { sizes: '(min-width: 900px) 34vw, 80vw' })}
         ${videoTag(featured)}
-        <span class="play-chip" aria-hidden="true">${playIcon}צפו עם סאונד</span>
+        <span class="play-chip" aria-hidden="true">${playIcon}${t('watch')}</span>
       </a>
     </div>
     <div class="feat-copy">
-      <p class="feat-kind">${esc(featured.stat)} · ${ltr(mmss(meta.duration))}</p>
-      <h2 id="featured-title" class="feat-title">${titleHtml(featured.title)}</h2>
+      <p class="feat-kind">${esc(tx(featured, 'stat'))} · ${ltr(mmss(meta.duration))}</p>
+      <h2 id="featured-title" class="feat-title">${titleHtml(tx(featured, 'title'))}</h2>
       ${text}
-      <a class="btn btn-line" ${playAttrs(featured, meta)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>צפו בסרט עם סאונד</a>
+      <a class="btn btn-line" ${playAttrs(featured, meta)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>${t('watchFilm')}</a>
     </div>
   </section>`;
-  }
+    }
 
-  // one big card per category, each opens its own page
-  const catsHtml = cats.map((c, i) => {
-    const list = inCat(c);
-    const cover = list.find((w) => w.id === c.cover) || list[0];
-    const meta = metas[cover.id];
-    return `<li class="cat">
+    const catsHtml = cats.map((c, i) => {
+      const list = inCat(c);
+      const cover = list.find((w) => w.id === c.cover) || list[0];
+      const meta = metas[cover.id];
+      return `<li class="cat">
         <a class="frame cat-frame" href="${c.id}/">
           ${posterImg(cover, meta, { sizes: '(min-width: 760px) 32vw, 92vw', decorative: true })}
           ${videoTag(cover)}
           <span class="fn" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
           <span class="cat-label">
-            <span class="cat-title">${esc(c.title || c.label)}</span>
-            <span class="cat-meta">${count(list.length)}<span class="cat-go">לכל הסרטים<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span></span>
+            <span class="cat-title">${esc(catTitle(c))}</span>
+            <span class="cat-meta">${t('count')(list.length)}<span class="cat-go">${t('toAll')}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span></span>
           </span>
         </a>
-        <p class="cat-lead">${esc(c.lead || '')}</p>
+        <p class="cat-lead">${esc(tx(c, 'lead') || '')}</p>
       </li>`;
-  }).join('\n      ');
+    }).join('\n      ');
 
-  let aboutHtml = '';
-  if (site.photo) aboutHtml += `<img class="about-photo" src="${esc(site.photo)}" alt="יוכבד פולונסקי" loading="lazy" decoding="async">`;
-  if (about) {
-    const meta = metas[about.id];
-    aboutHtml += `<figure class="about-film">
-        <a class="frame" ${playAttrs(about, meta)} aria-label="צפו עם סאונד: ${esc(about.title)}">
+    let aboutHtml = '';
+    if (site.photo) aboutHtml += `<img class="about-photo" src="${PREFIX}${esc(site.photo)}" alt="${t('photoAlt')}" loading="lazy" decoding="async">`;
+    if (about) {
+      const meta = metas[about.id];
+      aboutHtml += `<figure class="about-film">
+        <a class="frame" ${playAttrs(about, meta)} ${watchLabel(about)}>
           ${posterImg(about, meta, { sizes: '(min-width: 900px) 26vw, 70vw' })}
           ${videoTag(about)}
-          <span class="play-chip" aria-hidden="true">${playIcon}צפו עם סאונד</span>
+          <span class="play-chip" aria-hidden="true">${playIcon}${t('watch')}</span>
         </a>
-        <figcaption>${esc(about.pitch)} ${ltr(mmss(meta.duration))}</figcaption>
+        <figcaption>${esc(tx(about, 'pitch'))} ${ltr(mmss(meta.duration))}</figcaption>
       </figure>`;
-  }
-
-  let home = fs.readFileSync(INDEX, 'utf8');
-  home = put(home, 'nav', navHtml(''));
-  home = put(home, 'hero', heroHtml);
-  home = put(home, 'proof', proofHtml);
-  home = put(home, 'featured', featuredHtml);
-  home = put(home, 'categories', catsHtml);
-  home = put(home, 'about-media', aboutHtml);
-  home = put(home, 'foot-nav', footNavHtml(''));
-  fs.writeFileSync(INDEX, finish(home, ''));
-
-  // ===== one page per category =====
-  PREFIX = '../';
-  const tpl = fs.readFileSync(CAT_TEMPLATE, 'utf8');
-  for (const c of site.categories) {
-    const dir = path.join(ROOT, c.id);
-    const file = path.join(dir, 'index.html');
-    const list = inCat(c);
-    if (!list.length) { // no works (yet): remove a page this script made earlier
-      if (fs.existsSync(file) && fs.readFileSync(file, 'utf8').includes('data-generated')) { fs.rmSync(dir, { recursive: true }); console.log(`  removed empty page ${c.id}/`); }
-      continue;
     }
-    const switcher = cats.map((x) => `<a class="tab" href="../${x.id}/"${x.id === c.id ? ' aria-current="page"' : ''}>${esc(x.title || x.label)} <span class="tab-n" dir="ltr">${inCat(x).length}</span></a>`).join('');
-    let page = tpl.replace(/\{\{title\}\}/g, esc(c.title || c.label)).replace(/\{\{lead\}\}/g, esc(c.lead || ''))
-      .replace(/\{\{description\}\}/g, esc(c.description || c.lead || ''));
-    page = put(page, 'nav', navHtml(c.id));
-    page = put(page, 'switcher', switcher);
-    page = put(page, 'grid', list.map((w, i) => cardHtml(w, metas[w.id], i)).join('\n      '));
-    page = put(page, 'foot-nav', footNavHtml(c.id));
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(file, finish(page, `${c.id}/`));
+
+    let home = fs.readFileSync(HOME[lang], 'utf8');
+    home = put(home, 'nav', navHtml(''));
+    home = put(home, 'hero', heroHtml);
+    home = put(home, 'proof', proofHtml);
+    home = put(home, 'featured', featuredHtml);
+    home = put(home, 'categories', catsHtml);
+    home = put(home, 'about-media', aboutHtml);
+    home = put(home, 'foot-nav', footNavHtml(''));
+    fs.writeFileSync(HOME[lang], finish(home, ''));
+    pages.push(lang === 'en' ? 'en/' : '');
+
+    // ===== one page per category =====
+    PREFIX = lang === 'en' ? '../../' : '../';
+    LB = '../';
+    const tpl = fs.readFileSync(CAT_TPL[lang], 'utf8');
+    const langRoot = lang === 'en' ? path.join(ROOT, 'en') : ROOT;
+    for (const c of site.categories) {
+      const dir = path.join(langRoot, c.id);
+      const file = path.join(dir, 'index.html');
+      const list = inCat(c);
+      if (!list.length) { // no works (yet): remove a page this script made earlier
+        if (fs.existsSync(file) && fs.readFileSync(file, 'utf8').includes('data-generated')) { fs.rmSync(dir, { recursive: true }); console.log(`  removed empty page ${lang}/${c.id}/`); }
+        continue;
+      }
+      const switcher = cats.map((x) => `<a class="tab" href="../${x.id}/"${x.id === c.id ? ' aria-current="page"' : ''}>${esc(catTitle(x))} <span class="tab-n" dir="ltr">${inCat(x).length}</span></a>`).join('');
+      const langSwitch = lang === 'en' ? `../../${c.id}/` : `../en/${c.id}/`;
+      let page = tpl.replace(/\{\{title\}\}/g, esc(catTitle(c))).replace(/\{\{lead\}\}/g, esc(tx(c, 'lead') || ''))
+        .replace(/\{\{description\}\}/g, esc(tx(c, 'description') || tx(c, 'lead') || '')).replace(/\{\{langSwitch\}\}/g, langSwitch);
+      page = put(page, 'nav', navHtml(c.id));
+      page = put(page, 'switcher', switcher);
+      page = put(page, 'grid', list.map((w, i) => cardHtml(w, metas[w.id], i)).join('\n      '));
+      page = put(page, 'foot-nav', footNavHtml(c.id));
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(file, finish(page, `${c.id}/`));
+      pages.push((lang === 'en' ? 'en/' : '') + `${c.id}/`);
+    }
   }
 
   if (baseUrl) {
-    const urls = ['', ...cats.map((c) => `${c.id}/`)].map((p) => `  <url><loc>${baseUrl}${p}</loc></url>`).join('\n');
+    const urls = pages.map((p) => `  <url><loc>${baseUrl}${p}</loc></url>`).join('\n');
     fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
   }
-  console.log(`index.html: ${cats.length} category cards, ${hero.length} hero tiles, featured: ${featured ? featured.id : 'none'}`);
-  console.log(`pages: ${cats.map((c) => `${c.id}/ (${inCat(c).length})`).join(', ')}`);
+  console.log(`home: ${cats.length} category cards, ${hero.length} hero tiles, featured: ${featured ? featured.id : 'none'}`);
+  console.log(`pages (${pages.length}): ${pages.map((p) => '/' + p).join(' ')}`);
 }
 
 if (!htmlOnly) {
   for (const w of works) {
-    const t = Date.now();
+    const t0 = Date.now();
     process.stdout.write(`${w.id}\n`);
     encode(w);
-    console.log(`  done in ${((Date.now() - t) / 1000).toFixed(0)}s`);
+    console.log(`  done in ${((Date.now() - t0) / 1000).toFixed(0)}s`);
   }
 }
 if (!args.includes('--media')) render();

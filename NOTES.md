@@ -105,3 +105,9 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 - Round 6: removed the About sentence "אני בונה את מה שקשה או יקר לצלם..." (she did not like it). Nothing added in its place.
 - Round 6: "אשמח לשמוע מכם." made much smaller (was up to 200px, now 34–56px, after "גם לא כזה גדול") at her request. Text change pending her choice.
 - Contact heading text is now her pick: "בואו נדבר על הסרטון שלכם." (replaces "אשמח לשמוע מכם.").
+
+## English version (2.11.2026, her request: "אם לקוח דובר אנגלית")
+
+- Full English twin at `/en/` (home) and `/en/<category>/`, built by the same `build.cjs` from the `_en` fields in `works.json` / `site.json`, `en/index.html` (static English copy) and `_tools/category-template.en.html`. Each page has a language switch (`.lang`) to its twin; `hreflang` alternates + canonical per language; English share image `assets/og-en.jpg` from `_tools/og-en.html`; English WhatsApp text.
+- English headline: "AI ad films and clips for business" (her Hebrew: סרטוני פרסום לעסק וקליפים ב־AI). Contact heading: "Let’s talk about your video." Phone shown as +972 50-780-0412.
+- Translations are mine and factual (same claims as the Hebrew). Not reviewed by her yet.
