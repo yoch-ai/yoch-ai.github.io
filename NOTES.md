@@ -98,3 +98,4 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 - "בעין של צלמת" removed everywhere, and **no pencil circle** around a word ("במיוחד לא לסמן עיגול מסביב לצלמת"). The circle CSS is gone. The red frame around the featured film ("הבחירה שלי") is still there; she has not commented on it.
 - New category **פרסומות** (`ads/`): chess ("פרסומת לשולחן שחמט") and tennis ("פרסומת לסטודיו") — her call: they are ads, not short films. Shoes and jewelry stay in fashion. סרטים וקליפים = dancer + bar mitzvah, cover = dancer.
 - "את התסריט אני כותבת בעצמי" removed from the hero ("לא צריך בהתחלה"). The About principle "התסריט שלי" stays.
+- **Category rule (her words, 2.11.2026):** an ad goes in its field's category when one exists (shoes and jewelry ads stay in אופנה וכלות, a developer ad in נדל"ן). Only an ad with no field category of its own goes in פרסומות (chess table, the studio's own tennis ad).
