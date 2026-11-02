@@ -51,7 +51,16 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 - [x] Phase 1 design plan — `_planning/תוכנית עיצוב.html` (darkroom palette, Karantina + IBM Plex Sans Hebrew, red grease-pencil circle as the one memorable element). **Approved 2.11.2026** ("מאשרת, תבנה") without answering the open questions, so the plan's defaults stand: headline A, NUVELIE burgundy only (Hadas `hidden`), draft titles, no proof numbers, no client wording, no photo yet.
 - [x] Phase 2 build (2.11.2026)
 - [x] Phase 3 verify (2.11.2026) — see below
-- [ ] Phase 4 deploy — waiting for her GitHub account name + repo name (she must sign up / sign in herself)
+- [x] Phase 4 deploy (2.11.2026) — **live at https://yoch-ai.github.io/**
+
+## Phase 4 — hosting
+
+- GitHub account: she already had one (`yocheved1190`) and renamed it to **`yoch-ai`** herself so the address carries the brand. Repo `yoch-ai/yoch-ai.github.io`, public, Pages from `main` / root (enabled automatically for a `<user>.github.io` repo). Free plan, no subscription.
+- Push over HTTPS through Git Credential Manager (her sign-in is cached now). `http.postBuffer` raised for the 170 MB first push. GitHub warns about `barmitzvah/full.mp4` (76 MB > 50 MB recommended) but accepts it (hard limit 100 MB).
+- Before the first push the history was rewritten once (nothing had been published) so the bar mitzvah boy's first name, which is in the source file name, appears nowhere in the repo. `works.json` points at that file with `*` in place of the name; `build.cjs` resolves the pattern.
+- Live checks: private files (NOTES, README, `assets/data`, `_meta.json`, `_tools`, `_planning`, `.claude`) all 404; Range requests return 206; behaviour checks pass; Lighthouse mobile on the live URL 96 / 100 / 100 / 100.
+- To update the site: change files → `node _tools/build.cjs` (or `--html`) → commit → `git push`. Pages republishes in about a minute.
+- Custom domain would cost money (yearly domain fee); not set up. If she buys one: Settings → Pages → Custom domain, plus A records 185.199.108–111.153 (apex) or a CNAME to `yoch-ai.github.io` (www), then Enforce HTTPS, and update `site.json → url`.
 
 ## Phase 2 decisions
 
