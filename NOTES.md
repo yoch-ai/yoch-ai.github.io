@@ -48,10 +48,29 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 ## Status
 
 - [x] Phase 0 interview
-- [ ] Phase 1 design plan — `_planning/תוכנית עיצוב.html` (darkroom palette, Karantina + IBM Plex Sans Hebrew, red grease-pencil circle as the one memorable element), waiting for her approval + the open questions listed at the bottom of the plan
-- [ ] Phase 2 build
-- [ ] Phase 3 verify
-- [ ] Phase 4 deploy
+- [x] Phase 1 design plan — `_planning/תוכנית עיצוב.html` (darkroom palette, Karantina + IBM Plex Sans Hebrew, red grease-pencil circle as the one memorable element). **Approved 2.11.2026** ("מאשרת, תבנה") without answering the open questions, so the plan's defaults stand: headline A, NUVELIE burgundy only (Hadas `hidden`), draft titles, no proof numbers, no client wording, no photo yet.
+- [x] Phase 2 build (2.11.2026)
+- [x] Phase 3 verify (2.11.2026) — see below
+- [ ] Phase 4 deploy — waiting for her GitHub account name + repo name (she must sign up / sign in herself)
+
+## Phase 2 decisions
+
+- Works render into `index.html` by `node _tools/build.cjs` (static HTML: crawlable, works from file://, no JS needed to see cards). `works.json` stays the one file she edits.
+- Media per work in `assets/media/<id>/`: `preview.mp4` (8 s, 720 long side, no audio, CRF 27 ≤1.2 Mb/s), `hero.mp4` (hero tiles only, 1080), `full.mp4` (with audio, 1080 vertical / 720p wide), `poster.webp` + `poster-lg.webp`, LQIP inlined from `meta.json`.
+- Hero tiles: bridal, chess, NUVELIE, shoes. Real estate kept out of the hero on purpose: every real-estate film has burnt-in text that fights the headline.
+- Fonts self-hosted (Hebrew + Latin subsets, OFL in `assets/fonts/OFL.txt`): moving off Google's CDN took Lighthouse performance from 90 to 96.
+- Bar mitzvah `full.mp4` is 76 MB: under GitHub's 100 MB hard limit, over its 50 MB warning. Total media ≈167 MB.
+- `_config.yml` keeps NOTES/README/.claude off the published site; `_tools/`, `_planning/` are skipped by Jekyll already.
+- Proof strip renders only when `site.json → proof` has entries. Photo slot: `site.json → photo`.
+- Canonical / og:url / absolute og:image are written only when `site.json → url` is set (never guess the address).
+
+## Phase 3 results (2.11.2026)
+
+- Playwright (playwright-core + installed Chrome, scratchpad only) screenshots at 390 / 768 / 1440: no console errors, no horizontal scroll. Copies in `_planning/צילומי מסך/`.
+- Lighthouse mobile: performance 93–96, accessibility 100, best practices 100, SEO 100 (report in `_planning/צילומי מסך/Lighthouse.html`).
+- 25 behaviour checks pass: player opens + plays with sound, Esc / close button / Back close it, focus in and back out, 16:9 wide player, keyboard Enter, tabs filter, WhatsApp prefilled link on all 4 buttons, tel/mail/IG, all film files 200, phone plays ≤2 previews, floating button hidden on hero and at contact, reduced motion = no video loads + no animation + circle drawn, no-JS = all cards visible and link to the film file.
+- Bug found and fixed: the global `svg { max-inline-size: 100% }` squeezed the pencil circle and the featured pencil box.
+- Art-director pass: weakest section was About (no photo, a poster frame with out-of-context burnt-in text). Fixed once: her signature under the sentence like a signed print, promo poster = its Yoch AI end card.
 
 ## Local preview
 

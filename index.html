@@ -23,9 +23,8 @@
   <meta name="twitter:image" content="assets/og.jpg">
   <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=Karantina:wght@700&display=swap">
+  <link rel="preload" href="assets/fonts/karantina-700-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-hebrew-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/site.css">
   <script src="assets/js/site.js" defer></script>
   <script type="application/ld+json">
@@ -77,7 +76,7 @@
         <video muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1" data-src="assets/media/shoes/preview.mp4"></video>
         <span class="play-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>צפו עם סאונד</span>
       </a>
-      <svg class="pencil-box" viewBox="0 0 100 160" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 9 C30 4 70 6 95 7 C97 50 96 110 94 152 C66 156 32 155 5 151 C3 110 4 52 7 5"/></svg>
+      <svg class="pencil-box" viewBox="0 0 100 160" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 6 C30 2 70 4 97 4 C99 50 98 110 97 156 C66 159 32 158 3 155 C1 110 2 52 4 2"/></svg>
       <span class="pencil-note" aria-hidden="true">הבחירה שלי</span>
     </div>
     <div class="feat-copy">
@@ -276,16 +275,17 @@
       <!-- build:about-media -->
       <figure class="about-film">
         <a class="frame" href="assets/media/promo/full.mp4" data-play data-full="assets/media/promo/full.mp4" data-poster="assets/media/promo/poster-lg.webp" data-title="הפרסומת של Yoch AI" data-kind="פרסומת לסטודיו · 0:29" data-ar="v" aria-label="צפייה עם סאונד: הפרסומת של Yoch AI">
-          <img class="poster" src="assets/media/promo/poster.webp" srcset="assets/media/promo/poster.webp 406w, assets/media/promo/poster-lg.webp 608w" sizes="(min-width: 900px) 26vw, 70vw" width="406" height="720" alt="פלמינגו בתקריב, מתוך הפרסומת של Yoch AI" loading="lazy" decoding="async" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAPwBAAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb//gAQTGF2YzYyLjMwLjEwMAD/2wBDAAgUFBcUFxsbGxsbGyAeICEhISAgICAhISEkJCQqKiokJCQhISQkKCgqKi4vLisrKisvLzIyMjw8OTlGRkhWVmf/xABjAAEAAwEAAAAAAAAAAAAAAAAGAgMEBQEBAQAAAAAAAAAAAAAAAAAABAIQAAIBBAEDBQEBAAAAAAAAAAECESEDEgBBYTEEIhOBkVHhIxEBAQEBAAAAAAAAAAAAAAAAAAERMf/AABEIABwAEAMBIgACEQADEQD/2gAMAwEAAhEDEQA/AAKjK0IIaBVZ9X9+N4V1QcCoINZ6RzqK/ZQE+1VaiSa5CJO0WvEa4GUYAzllJoOZ6U0UpWXiVs3vHcr/AJnP9AJBHMMNSLfusQC8d5gUr0FNPFcyrGZHbdAdl5+41CX/2Q==)">
+          <img class="poster" src="assets/media/promo/poster.webp" srcset="assets/media/promo/poster.webp 406w, assets/media/promo/poster-lg.webp 608w" sizes="(min-width: 900px) 26vw, 70vw" width="406" height="720" alt="כרטיס הסיום של הפרסומת: הלוגו של Yoch AI מעל מגרש טניס" loading="lazy" decoding="async" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAPwBAAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb//gAQTGF2YzYyLjMwLjEwMAD/2wBDAAgUFBcUFxsbGxsbGyAeICEhISAgICAhISEkJCQqKiokJCQhISQkKCgqKi4vLisrKisvLzIyMjw8OTlGRkhWVmf/xABkAAEBAQAAAAAAAAAAAAAAAAAFBgMBAQEBAAAAAAAAAAAAAAAAAAIDBBAAAQMEAQQDAQAAAAAAAAAAAQIDESEAEgRBBVETYYHBcTERAAIDAQEAAAAAAAAAAAAAAAACMXEBERL/wAARCAAcABADASIAAhEAAxEA/9oADAMBAAIRAxEAPwBXbeOuhJAkqMV/g72k0fKgKiJvFK0bIhxNCRjycr3ddb1EoCsqiBTtcPTGziknrZFLdSRQ/JsvrL5WoBJo2ooP6QD9XV9IOTMGtJHqtyPVWUI2XAJhxryKHGY5Hb3YyaG0Wf/Z)">
           <video muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1" data-src="assets/media/promo/preview.mp4"></video>
           <span class="play-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>צפו עם סאונד</span>
         </a>
-        <figcaption>הפרסומת שעשיתי לעצמי. <span dir="ltr">0:29</span></figcaption>
+        <figcaption>הפרסומת שעשיתי ל־Yoch AI. <span dir="ltr">0:29</span></figcaption>
       </figure>
       <!-- /build:about-media -->
       </div>
       <div class="about-copy">
         <h2 id="about-title" class="about-lead">אני יוכבד, צלמת. ויש לי את העין.</h2>
+        <img class="about-sign" src="assets/img/logo.png" width="236" height="192" alt="" loading="lazy" decoding="async">
         <ul class="principles">
           <li><h3>התסריט שלי</h3><p>כל סרט מתחיל בתסריט שאני כותבת בעצמי.</p></li>
           <li><h3>הרעיון משותף</h3><p>אני יוצרת לפי מה שאתם רוצים, ושותפה לרעיון מההתחלה.</p></li>

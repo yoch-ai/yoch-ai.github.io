@@ -160,14 +160,15 @@
   {
     "id": "promo",
     "title": "הפרסומת של Yoch AI",
-    "pitch": "הפרסומת שעשיתי לעצמי.",
+    "pitch": "הפרסומת שעשיתי ל־Yoch AI.",
     "stat": "פרסומת לסטודיו",
     "category": "films",
     "source": "../תיק עבודות/פרסומת 15 שניות/פרסומת Yoch AI - גרסה 22.mp4",
-    "alt": "פלמינגו בתקריב, מתוך הפרסומת של Yoch AI",
-    "previewStart": 19,
+    "alt": "כרטיס הסיום של הפרסומת: הלוגו של Yoch AI מעל מגרש טניס",
+    "previewStart": 21,
     "about": true,
     "link": "",
-    "featured": false
+    "featured": false,
+    "posterTime": 27.6
   }
 ]

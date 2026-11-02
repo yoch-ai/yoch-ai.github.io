@@ -135,7 +135,7 @@ function render() {
         ${videoTag(featured)}
         <span class="play-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>צפו עם סאונד</span>
       </a>
-      <svg class="pencil-box" viewBox="0 0 100 160" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M6 9 C30 4 70 6 95 7 C97 50 96 110 94 152 C66 156 32 155 5 151 C3 110 4 52 7 5"/></svg>
+      <svg class="pencil-box" viewBox="0 0 100 160" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 6 C30 2 70 4 97 4 C99 50 98 110 97 156 C66 159 32 158 3 155 C1 110 2 52 4 2"/></svg>
       <span class="pencil-note" aria-hidden="true">הבחירה שלי</span>
     </div>
     <div class="feat-copy">
