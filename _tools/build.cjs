@@ -32,8 +32,19 @@ const probe = (file) => {
 const scale = (vertical, long) => (vertical ? `scale=-2:'min(${long},ih)'` : `scale='min(${long},iw)':-2`);
 const ff = (argv) => run('ffmpeg', ['-nostdin', '-hide_banner', '-v', 'error', '-y', ...argv]);
 
+// "source" may use * for part of the file name (e.g. to keep a private name out of the public repo).
+function resolveSource(rel) {
+  const abs = path.resolve(ROOT, rel);
+  if (!abs.includes('*')) return abs;
+  const dir = path.dirname(abs);
+  const re = new RegExp('^' + path.basename(abs).replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*') + '$');
+  const hits = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => re.test(f)) : [];
+  if (hits.length !== 1) { console.warn(`! source pattern ${rel} matched ${hits.length} files`); return abs; }
+  return path.join(dir, hits[0]);
+}
+
 function encode(w) {
-  const src = path.resolve(ROOT, w.source);
+  const src = resolveSource(w.source);
   if (!fs.existsSync(src)) { console.warn(`! ${w.id}: source not found → ${src}`); return null; }
   const dir = path.join(MEDIA, w.id);
   fs.mkdirSync(dir, { recursive: true });
