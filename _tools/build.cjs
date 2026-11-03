@@ -189,7 +189,8 @@ function render() {
   }
   const ready = works.filter((w) => metas[w.id] && !w.hidden);
   const grid = ready.filter((w) => !w.about);
-  const hero = ready.filter((w) => w.hero).slice(0, 4);
+  // hero tiles and category covers are pictures, not listings: a hidden work may still appear there
+  const hero = works.filter((w) => metas[w.id] && w.hero).slice(0, 4);
   const featured = ready.find((w) => w.featured);
   const about = ready.find((w) => w.about);
   const cats = site.categories.filter((c) => grid.some((w) => w.category === c.id));
@@ -239,7 +240,7 @@ function render() {
 
     const catsHtml = cats.map((c, i) => {
       const list = inCat(c);
-      const cover = list.find((w) => w.id === c.cover) || list[0];
+      const cover = works.find((w) => w.id === c.cover && metas[w.id]) || list[0];
       const meta = metas[cover.id];
       return `<li class="cat">
         <a class="frame cat-frame" href="${c.id}/">

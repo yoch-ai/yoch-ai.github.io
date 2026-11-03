@@ -47,7 +47,8 @@
     "title_en": "The Train",
     "pitch_en": "A lace gown with flowers, a long train on stone stairs and soft window light.",
     "stat_en": "Bridal film",
-    "alt_en": "A bride in a lace gown with a long train climbing a stone staircase"
+    "alt_en": "A bride in a lace gown with a long train climbing a stone staircase",
+    "hidden": true
   },
   {
     "id": "bridal-ai",
