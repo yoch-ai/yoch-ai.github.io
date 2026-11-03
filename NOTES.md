@@ -111,3 +111,9 @@ Tabs are generated from `works.json`, so a food tab appears by itself when a foo
 - Full English twin at `/en/` (home) and `/en/<category>/`, built by the same `build.cjs` from the `_en` fields in `works.json` / `site.json`, `en/index.html` (static English copy) and `_tools/category-template.en.html`. Each page has a language switch (`.lang`) to its twin; `hreflang` alternates + canonical per language; English share image `assets/og-en.jpg` from `_tools/og-en.html`; English WhatsApp text.
 - English headline: "AI ad films and clips for business" (her Hebrew: סרטוני פרסום לעסק וקליפים ב־AI). Contact heading: "Let’s talk about your video." Phone shown as +972 50-780-0412.
 - Translations are mine and factual (same claims as the Hebrew). Not reviewed by her yet.
+
+## 3.11.2026 — four new films + the food page
+
+- `timeout` (TIME OUT, grill restaurant; `0a4f13ae….mp4`) and `fornaluce` (FORNALUCE pizzeria; `e3a03df6….mp4`) → **food** (`/food/`, `/en/food/`; cover = fornaluce). Pitches quote the films' own lines ("מגיעים רעבים. אוכלים לאט. חוזרים מהר." / "כל ביס שווה את הדרך.").
+- `winter27` (חורף 27, white coat in the rain; `2d989ec3….mp4`) and `bridal-ai` ("השובל · נוצר כולו ב־AI", the bridal film with her own text overlays; `שמלת כלה 1.mp4`, 4K) → fashion. Fashion now has 6 films.
+- TIME OUT / FORNALUCE are names shown in the films; like NUVELIE they are titles, never called "לקוח".

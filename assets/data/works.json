@@ -50,6 +50,23 @@
     "alt_en": "A bride in a lace gown with a long train climbing a stone staircase"
   },
   {
+    "id": "bridal-ai",
+    "title": "השובל · נוצר כולו ב־AI",
+    "pitch": "בלי יום צילום, בלי לשכור אולם ובלי שמישהו יסדר את השובל. השמלה, הדוגמנית והלוקיישן נוצרו כולם ב־AI.",
+    "stat": "סרט שמלות כלה",
+    "category": "fashion",
+    "source": "../סירטונים סופים/שמלת כלה 1.mp4",
+    "alt": "כלה בשמלת תחרה ליד חלון גבוה, עם הכיתוב: בלי יום צילום",
+    "previewStart": 0.5,
+    "posterTime": 1.5,
+    "link": "",
+    "featured": false,
+    "title_en": "The Train · Made Entirely in AI",
+    "pitch_en": "No shoot day, no hall to rent, and no one to arrange the train. The dress, the model and the location were all made in AI.",
+    "stat_en": "Bridal film",
+    "alt_en": "A bride in a lace gown by a tall window, with the caption: no shoot day"
+  },
+  {
     "id": "chess",
     "title": "המהלך הבא",
     "pitch": "איש זקן ופלמינגו משחקים שחמט בפארק, והפלמינגו נותן מט. כל מהלך על הלוח חוקי.",
@@ -83,6 +100,23 @@
     "pitch_en": "One coat, from the bright studio out to the street. No model, no studio, no shoot day.",
     "stat_en": "Boutique fashion film",
     "alt_en": "A model in a long burgundy coat walking through a bright studio"
+  },
+  {
+    "id": "winter27",
+    "title": "חורף 27",
+    "pitch": "מעיל לבן אחד ברחוב חורפי וגשום: חם, נינוח, אלגנטי, זורם ונצחי.",
+    "stat": "פרסומת אופנה",
+    "category": "fashion",
+    "source": "../סירטונים סופים/2d989ec3-fbc9-4aea-8674-59057c6ff5db.mp4",
+    "alt": "אישה במעיל לבן ארוך חוצה רחוב גשום בעיר",
+    "previewStart": 9,
+    "posterTime": 11.5,
+    "link": "",
+    "featured": false,
+    "title_en": "Winter 27",
+    "pitch_en": "One white coat on a rainy winter street: warm, effortless, elegant, flowing, timeless.",
+    "stat_en": "Fashion ad",
+    "alt_en": "A woman in a long white coat crossing a rainy city street"
   },
   {
     "id": "shibro",
@@ -133,6 +167,40 @@
     "pitch_en": "A wood-and-glass cabin facing a green ridge, and one morning in no hurry.",
     "stat_en": "Cabin film",
     "alt_en": "A woman in a white dress pouring water in a cabin kitchen facing green hills"
+  },
+  {
+    "id": "timeout",
+    "title": "TIME OUT",
+    "pitch": "מגיעים רעבים, אוכלים לאט, חוזרים מהר. סטייק, פיתות מהגריל וערב אחד במסעדה.",
+    "stat": "פרסומת למסעדה",
+    "category": "food",
+    "source": "../סירטונים סופים/0a4f13ae-f8d5-482e-ae08-d8c705bad44a.mp4",
+    "alt": "שף מגיש סטייק על קרש עץ במטבח המסעדה",
+    "previewStart": 12.5,
+    "posterTime": 15.8,
+    "link": "",
+    "featured": false,
+    "title_en": "TIME OUT",
+    "pitch_en": "Arrive hungry, eat slowly, come back soon. Steak, pita from the grill and one evening at the restaurant.",
+    "stat_en": "Restaurant ad",
+    "alt_en": "A chef presenting a steak on a wooden board in the restaurant kitchen"
+  },
+  {
+    "id": "fornaluce",
+    "title": "FORNALUCE",
+    "pitch": "פיצה נפוליטנית מהתנור, מהרוטב על הבצק ועד הביס הראשון. כל ביס שווה את הדרך.",
+    "stat": "פרסומת לפיצרייה",
+    "category": "food",
+    "source": "../סירטונים סופים/e3a03df6-23d3-4d9b-a0bc-c97004548102.mp4",
+    "alt": "פיצה מרגריטה יוצאת מתנור עצים",
+    "previewStart": 7,
+    "posterTime": 12,
+    "link": "",
+    "featured": false,
+    "title_en": "FORNALUCE",
+    "pitch_en": "Neapolitan pizza from the oven, from the sauce on the dough to the first bite. Every bite is worth the trip.",
+    "stat_en": "Pizzeria ad",
+    "alt_en": "A margherita pizza coming out of a wood-fired oven"
   },
   {
     "id": "shoes",
